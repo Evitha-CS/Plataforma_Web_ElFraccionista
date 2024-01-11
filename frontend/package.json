@@ -1,0 +1,30 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.8.1",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/press-start-2p": "^5.0.12",
+    "axios": "^1.4.0",
+    "chart.js": "^3.7.0",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "framer-motion": "^10.16.4",
+    "next": "13.3.0",
+    "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
+    "react-data-table-component": "^7.5.4",
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
+    "react-unity-webgl": "^8.8.0",
+    "styled-components": "^6.0.7"
+  }
+}

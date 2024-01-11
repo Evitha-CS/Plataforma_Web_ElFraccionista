@@ -1,0 +1,69 @@
+{
+    "regiones": [
+      {
+        "nombre": "I - Tarapacá",
+        "ciudades": ["Iquique", "Alto Hospicio", "Pozo Almonte", "Huara", "Pica"]
+      },
+      {
+        "nombre": "II - Antofagasta",
+        "ciudades": ["Antofagasta", "Calama", "Tocopilla", "Mejillones", "Taltal"]
+      },
+      {
+        "nombre": "III - Atacama",
+        "ciudades": ["Copiapó", "Caldera", "Vallenar", "Chañaral", "Huasco"]
+      },
+      {
+        "nombre": "IV - Coquimbo",
+        "ciudades": ["La Serena", "Coquimbo", "Ovalle", "Illapel", "Vicuña"]
+      },
+      {
+        "nombre": "V - Valparaíso",
+        "ciudades": ["Valparaíso", "Viña del Mar", "Quilpué", "Villa Alemana", "San Antonio"]
+      },
+      {
+        "nombre": "VI - O'Higgins",
+        "ciudades": ["Rancagua", "San Fernando", "Pichilemu", "Santa Cruz", "Rengo"]
+      },
+      {
+        "nombre": "VII - Maule",
+        "ciudades": ["Talca", "Curicó", "Linares", "Constitución", "Cauquenes"]
+      },
+      {
+        "nombre": "VIII - Biobío",
+        "ciudades": ["Concepción", "Talcahuano", "Chillán", "Los Ángeles", "Coronel"]
+      },
+      {
+        "nombre": "IX - Araucanía",
+        "ciudades": ["Temuco", "Villarrica", "Angol", "Pucón", "Victoria"]
+      },
+      {
+        "nombre": "X - Los Lagos",
+        "ciudades": ["Puerto Montt", "Osorno", "Castro", "Ancud", "Puerto Varas"]
+      },
+      {
+        "nombre": "XI - Aysén",
+        "ciudades": ["Coyhaique", "Aysén", "Chile Chico", "Cochrane", "Puerto Aysén"]
+      },
+      {
+        "nombre": "XII - Magallanes",
+        "ciudades": ["Punta Arenas", "Puerto Natales", "Porvenir", "Puerto Williams", "Cabo de Hornos"]
+      },
+      {
+        "nombre": "XIII - Metropolitana de Santiago",
+        "ciudades": ["Santiago", "Maipú", "Peñalolén", "Las Condes", "La Florida"]
+      },
+      {
+        "nombre": "XIV - Los Ríos",
+        "ciudades": ["Valdivia", "La Unión", "Río Bueno", "Panguipulli", "Paillaco"]
+      },
+      {
+        "nombre": "XV - Arica y Parinacota",
+        "ciudades": ["Arica", "Putre", "General Lagos", "Camarones", "Codpa"]
+      },
+      {
+        "nombre": "XVI - Ñuble",
+        "ciudades": ["Chillán", "Chillán Viejo", "Cobquecura", "Coelemu", "Quillón"]
+      }
+    ]
+  }
+  
