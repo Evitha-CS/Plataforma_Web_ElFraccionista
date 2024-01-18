@@ -4,7 +4,7 @@ import { guardarDatosPartida } from '../controllers/partidaController.js';
 import * as user from '../controllers/user.js';
 import * as cursos from '../controllers/cursos.js';
 import * as stats from '../controllers/estadisticas.js';
-
+import { monitorCurso } from '../controllers/monitorController.js';
 
 
 const router = Router()
@@ -54,7 +54,10 @@ router.get('/users', user.getAllUsers);
 router.get('/users/role/:role', user.getUsersByRole);
 router.get('/users/curso/:curso/grado/:grado', user.getUsersByCurso);
 router.put('/users/:id', user.updateUser);
+router.put('/users/:userId/update-playing', user.actualizarEstadoJuego);
 
+//monitoreo
+router.get('/cursos/:cursoId/monitoreo', monitorCurso);
 
 //CURSOS
 router.get('/cursos', cursos.getAllCursos);

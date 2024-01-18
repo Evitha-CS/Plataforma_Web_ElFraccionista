@@ -1,5 +1,19 @@
 import db from '../database.js';
 
+export const actualizarEstadoJuego = async (req, res) => {
+  const { userId, isPlaying } = req.body;
+
+  try {
+    await db.user.update({
+      where: { id: userId },
+      data: { isPlaying: isPlaying },
+    });
+    res.status(200).send("Estado actualizado correctamente");
+  } catch (error) {
+    console.error('Error al actualizar el estado:', error);
+    res.status(500).json({ error: "Error al actualizar el estado del usuario" });
+  }
+};
 
 export const getAllUsers = async (req, res) => {
   try {

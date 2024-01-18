@@ -6,12 +6,24 @@ import {Flex} from '@chakra-ui/react';
 import { getAllUsers, getUsersByRole } from "@/services/usuarios";
 import AuthRoute from "@/components/AuthRoute";
 import { updateRole } from "@/services/usuarios";
+import { actualizarEstadoJuego } from "@/services/monitoreo"
+import { useAuth } from '@/context/AuthContext';
 
 function UserTable() {
     const toast = useToast();
     const [users, setUsers] = useState([]);
     const [roles, setRole] = useState([]);
-
+    const { user } = useAuth();
+    useEffect(() => {
+        if (user) {
+          actualizarEstadoJuego(user.id, false);
+        }
+        return () => {
+          if (user) {
+            actualizarEstadoJuego(user.id, false);
+          }
+        };
+      }, [user]);
     useEffect(() => {
         // Obtener todos los usuarios
         getAllUsers()

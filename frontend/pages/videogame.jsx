@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HomeLayout from "@/components/HomeLayout";
 import Unity, { UnityContext } from "react-unity-webgl";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from 'next/router';
-import { useEffect } from "react";
-import {
-    Flex,
-} from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import CourseCard from '@/components/CourseCard';
-
 
 const unityContext = new UnityContext({
     loaderUrl: "Build/El_Fraccionista_WEB_ver.loader.js",
@@ -18,39 +14,56 @@ const unityContext = new UnityContext({
 });
 
 export default function GamePage() {
-
     const router = useRouter();
     const { isAuthenticated, user } = useAuth();
+    const [isUnityLoaded, setUnityLoaded] = useState(false);
     const [isUnityVisible, setUnityVisible] = useState(false);
     const [isButtonVisible, setButtonVisible] = useState(true);
     const [cursoId, setCursoId] = useState(null);
     const esAdminOProfesor = user && (user.role === 'ADMIN' || user.role === 'PROFESOR');
+
+    // Agregado para rastrear la carga de Unity
+    useEffect(() => {
+        unityContext.on("loaded", () => {
+            setUnityLoaded(true);
+        });
+    }, []);
+
     useEffect(() => {
         // Obtener el cursoId de la URL
         if (router.query.cursoId) {
             setCursoId(router.query.cursoId);
         }
     }, [router.query.cursoId]);
-    
+
     const handleRedirectToStats = () => {
         if (cursoId) {
             router.push(`/statsusuarios?cursoId=${cursoId}`);
         }
     };
+
     const userName = isAuthenticated && user ? user.nombre : "";
     const userId = isAuthenticated && user ? user.id : "";
 
     const userIdAndName = `${userId}, ${userName}`;
-
-    
+    console.log(userIdAndName);
 
     function SendName() {
-
-        unityContext.send("ConnectToServer", "SetString", userIdAndName);
-        setUnityVisible(true); // Mostrar el componente Unity cuando se envía el nombre
-        setButtonVisible(false);
+        if (isUnityLoaded) {
+            unityContext.send("ConnectToServer", "SetString", userIdAndName);
+            setUnityVisible(true); // Mostrar el componente Unity cuando se envía el nombre
+            setButtonVisible(false);
+        } else {
+            // Intenta enviar los datos después de un breve retraso si Unity aún no está cargado.
+            setTimeout(() => {
+                if (isUnityLoaded) {
+                    unityContext.send("ConnectToServer", "SetString", userIdAndName);
+                    setUnityVisible(true);
+                    setButtonVisible(false);
+                }
+            }, 1000); // Ajusta el tiempo según sea necesario.
+        }
     }
-
     //Tarjetas para la portada del curso
     const cardsData = [
         {

@@ -5,7 +5,7 @@ import {
   Avatar, Image
 } from "@chakra-ui/react";
 import {
-  FiHome, FiMenu, FiUser, FiBarChart2, FiBookOpen, FiInfo, FiLogOut
+  FiHome, FiMenu, FiUser, FiBarChart2, FiBookOpen, FiInfo, FiLogOut, FiActivity
 } from "react-icons/fi";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/router";
@@ -32,6 +32,7 @@ export default function HomeLayout({ children }) {
 
   const isUser = user && user.role === 'USER';
   const isUserAdmin = user && user.role === 'ADMIN';
+  const isUserProfesor = user && user.role === 'PROFESOR';
 
   const sidebarWidth = isSidebarOpen ? "300px" : "80px";
 
@@ -63,6 +64,9 @@ export default function HomeLayout({ children }) {
       <Stack p="0">
         <SidebarItem icon={FiHome} title="Inicio" href="/home" />
         <SidebarItem icon={FiBookOpen} title="Cursos" href="/cursos" />
+       { (isUserAdmin || isUserProfesor) && (
+        <SidebarItem icon={FiActivity} title="Monitoreo" href="/monitoreo" />
+      )}
         <SidebarItem icon={FiBarChart2} title="Mis Estadísticas" href="/estadisticas" />
          {isUserAdmin && (
         <SidebarItem icon={FiUser} title="Usuarios" href="/usuarios" />

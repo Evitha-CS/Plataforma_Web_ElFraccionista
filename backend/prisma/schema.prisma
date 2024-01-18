@@ -26,6 +26,18 @@ model Partida {
   jugador2Id         Int
 }
 
+model Salavirtual {
+  id                 Int      @id @default(autoincrement())
+  nombreSala      String   // Nombre de la sala creada
+  createdAt          DateTime @default(now())
+
+  // Relaciones
+  usuario1           User?     @relation("SalaUsuario1", fields: [usuario1Id], references: [id])
+  usuario1Id         Int?
+  usuario2           User?     @relation("SalaUsuario2", fields: [usuario2Id], references: [id])
+  usuario2Id         Int?
+}
+
 model User {
   id           Int      @id @default(autoincrement())
   registeredAt DateTime @default(now())
@@ -37,12 +49,15 @@ model User {
   ciudad       Ciudad?   @relation(fields: [ciudadId], references: [id])
   ciudadId     Int?
   telefono     String?
+  isPlaying    Boolean   @default(false) // Nuevo atributo
   role         Rol      @default(USER)
   cursos       Curso[]  // Relación con cursos
   
   // Relaciones
   partidasJugador1 Partida[] @relation("PartidaJugador1")
   partidasJugador2 Partida[] @relation("PartidaJugador2")
+  salaUsuario1 Salavirtual[] @relation("SalaUsuario1")
+  salaUsuario2 Salavirtual[] @relation("SalaUsuario2")
 }
 
 model Curso {

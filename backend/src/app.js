@@ -39,12 +39,8 @@ app.post('/api/guardar-datos-partida', async (req, res) => {
     console.log('TotalMovesp2:', TotalMovesp2);
     console.log('p1_ID:', p1_ID);
     console.log('p1_ID:', p2_ID);
-    
 
-    
-    //const jugador1 = 1;
-    //const jugador2 = 2;
-    
+
     // Guardar en la base de datos usando Prisma
     const partidaGuardada = await prisma.partida.create({
       data: {
@@ -56,7 +52,7 @@ app.post('/api/guardar-datos-partida', async (req, res) => {
         movimientosJugador2: TotalMovesp2,
         jugador1Id: p1_ID,
         jugador2Id: p2_ID,
-        
+
       },
     });
 
@@ -68,5 +64,85 @@ app.post('/api/guardar-datos-partida', async (req, res) => {
     res.status(500).json({ success: false, message: 'Error interno del servidor' });
   }
 });
+
+
+// Endpoint para guardar estado del juego
+app.post('/api/usuario-isplaying', async (req, res) => {
+  try {
+    console.log('Cuerpo de la solicitud:', req.body);
+    const { id_usuario, nombre_usuario, play } = req.body;
+
+    // Guardar en la base de datos usando Prisma
+    const updatedUser = await prisma.user.update({
+      where: {
+        id: id_usuario,          // Condición: id_usuario coincide con id en la base de datos
+        nombre: nombre_usuario  // Condición: nombre_usuario coincide con nombre en la base de datos
+      },
+      data: {
+        isPlaying: play  // Actualizar el campo isPlaying con el valor de la variable play
+      },
+    });
+
+    console.log('Usuario actualizado:', updatedUser);
+
+    res.status(200).json({ message: 'Estado del juego actualizado correctamente.' });
+  } catch (error) {
+    console.error('Error al actualizar el estado del juego:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+
+// Endpoint para guardar jugadores en una sala
+app.post('/api/usuario-isinRoom', async (req, res) => {
+  try {
+    console.log('Cuerpo de la solicitud:', req.body);
+    const { nombre_sala, usuario1_Id, usuario2_Id } = req.body;
+
+    // Guardar en la base de datos usando Prisma
+    const CreateRoom = await prisma.salavirtual.create({
+      data: {
+        nombreSala: nombre_sala,
+        usuario1Id: usuario1_Id,
+        usuario2Id: usuario2_Id,
+      },
+    });
+
+    console.log('Sala_Virtual creada:', CreateRoom);
+
+    res.status(200).json({ message: 'Datos de la sala guardados exitosamente.' });
+  } catch (error) {
+    console.error('Error al guardar datos de la sala:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+// Endpoint para eliminar jugadores de una sala
+app.post('/api/usuario-isNotInRoom', async (req, res) => {
+  try {
+    console.log('Cuerpo de la solicitud:', req.body);
+    const { nombre_sala, usuario1_Id, usuario2_Id } = req.body;
+
+    // Eliminar en la base de datos usando Prisma
+    const deleteResult = await prisma.salavirtual.deleteMany({
+      where: {
+        nombreSala: nombre_sala,
+        OR: [
+          { usuario1Id: usuario1_Id },
+          { usuario2Id: usuario2_Id },
+        ],
+      },
+    });
+
+    console.log('Registros eliminados:', deleteResult);
+
+    res.status(200).json({ message: 'Datos de la sala eliminados exitosamente.' });
+  } catch (error) {
+    console.error('Error al eliminar datos de la sala:', error);
+    res.status(500).json({ error: 'Error interno del servidor.' });
+  }
+});
+
+
 
 export default app

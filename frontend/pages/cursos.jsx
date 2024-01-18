@@ -5,6 +5,7 @@ import { getUsersByRole } from '../services/usuarios';
 import { useAuth } from "@/context/AuthContext";
 import AuthRoute from "@/components/AuthRoute";
 import NextLink from "next/link";
+import { actualizarEstadoJuego } from "@/services/monitoreo"
 import { useRouter } from "next/router";
 import {
   Heading, Flex, Box, Button, Text, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton, useDisclosure,
@@ -24,7 +25,18 @@ export default function CoursesPage() {
   const [listaDeEstudiantesDisponibles, setListaDeEstudiantesDisponibles] = useState([]);
 
   const router = useRouter();
-  
+
+  useEffect(() => {
+    if (user) {
+      actualizarEstadoJuego(user.id, false);
+    }
+    return () => {
+      if (user) {
+        actualizarEstadoJuego(user.id, false);
+      }
+    };
+  }, [user]);
+
   const loadEstudiantesDisponibles = async () => {
     try {
       const estudiantes = await getUsersByRole('USER');

@@ -21,7 +21,7 @@ import AuthRoute from "@/components/AuthRoute";
 import { updateUser } from "@/services/usuarios";
 import { useAuth } from "@/context/AuthContext";
 import { obtenerRegiones, obtenerComunasPorRegion } from '@/services/regiones.js';
-
+import { actualizarEstadoJuego } from "@/services/monitoreo"
 export default function Profile() {
   const { user, refreshUser } = useAuth();
   const toast = useToast();
@@ -35,6 +35,16 @@ export default function Profile() {
   const [comunas, setComunas] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => {
+    if (user) {
+      actualizarEstadoJuego(user.id, false);
+    }
+    return () => {
+      if (user) {
+        actualizarEstadoJuego(user.id, false);
+      }
+    };
+  }, [user]);
   useEffect(() => {
     const cargarRegiones = async () => {
       try {

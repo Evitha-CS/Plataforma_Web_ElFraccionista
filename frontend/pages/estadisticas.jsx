@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { actualizarEstadoJuego } from "@/services/monitoreo"
 import {
   Box,
   Heading,
@@ -46,6 +47,16 @@ const EstadisticasCombinadasUsuario = () => {
     };
   
     fetchStats();
+  }, [user]);
+  useEffect(() => {
+    if (user) {
+      actualizarEstadoJuego(user.id, false);
+    }
+    return () => {
+      if (user) {
+        actualizarEstadoJuego(user.id, false);
+      }
+    };
   }, [user]);
 
 
