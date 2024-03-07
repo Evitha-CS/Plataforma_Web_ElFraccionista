@@ -48,4 +48,4 @@ Para verificar que la aplicación se ejecuta correctamente se debe ir a la url *
 
 En este repositorio solo se encuentra el videojuego ya exportado en el formato WebGL; por lo tanto, no es posible revisar su contenido. Por esa misma razón, se aloja en otro repositorio donde está disponible su versión más actualizada.
 
-`https://github.com/Evitha-CS/ElFraccionista-Videojuego.git`
+https://github.com/Evitha-CS/ElFraccionista-Videojuego.git
