@@ -43,3 +43,9 @@ Cuando las dependencias hayan sido instaladas, se debe ejecutar `npm start` para
 Al ejecutarse el  ***backend*** se debe abrir otra terminal y ejecutar  `npm install` pero esta vez en el directorio ***frontend*** . Terminadas de instalarse las dependencias se debe ejecutar `npm run dev` para correr también la aplicación por el lado del  ***frontend***.
 
 Para verificar que la aplicación se ejecuta correctamente se debe ir a la url *http://localhost:3000* y lo primero que debe aparecer es la pantalla de inicio de sesión de la aplicación.
+
+### Videojuego
+
+En este repositorio solo se encuentra el videojuego ya exportado en el formato WebGL; por lo tanto, no es posible revisar su contenido. Por esa misma razón, se aloja en otro repositorio donde está disponible su versión más actualizada.
+
+`https://github.com/Evitha-CS/ElFraccionista-Videojuego.git`
