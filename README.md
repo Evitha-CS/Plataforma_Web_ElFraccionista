@@ -30,7 +30,7 @@ Este proyecto fué desarrollado para optar al título de Ingeniería Civil Infor
 #### Paso 3:
 
 - Crear una base de datos con el nombre ***proyecto***
-- Luego restaurar la base de datos **"PROYECTO.sql"**
+- Luego importar la base de datos **"PROYECTO.sql"**
 
 ### Ejecutar proyecto
 
